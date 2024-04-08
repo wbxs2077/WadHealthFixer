@@ -1,3 +1,4 @@
+[中文](https://github.com/wbxs2077/WadHealthFixer/blob/main/README_CN.md) | [English](https://github.com/wbxs2077/WadHealthFixer/blob/main/README.md)
 ## Wad Health Fixer
 
 Wad Health Fixer 是一个用于修复《英雄联盟》游戏中血条消失问题的工具，该问题通常由损坏的 wad.client 文件引起。该工具自动化修复这些文件的过程，以确保玩家能够顺畅地游戏。
