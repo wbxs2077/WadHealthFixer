@@ -1,2 +1,0 @@
-# WadHealthFixer
-一个修复英雄联盟中wad.client自制皮肤文件的工具，用于解决人物血条消失的问题
