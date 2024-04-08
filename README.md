@@ -1,4 +1,4 @@
-[中文](https://raw.githubusercontent.com/wbxs2077/WadHealthFixer/main/README_CN.md) | [English](https://github.com/wbxs2077/WadHealthFixer/blob/main/README.md)
+[中文](https://github.com/wbxs2077/WadHealthFixer/blob/main/README_CN.md) | [English](https://github.com/wbxs2077/WadHealthFixer/blob/main/README.md)
 ## Wad Health Fixer
 
 Wad Health Fixer is a tool designed to fix the issue of disappearing health bars in the League of Legends game caused by corrupted wad.client files. It automates the process of repairing these files to ensure a smooth gaming experience for players.
