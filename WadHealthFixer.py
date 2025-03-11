@@ -3,6 +3,7 @@ import subprocess
 import sys
 import logging
 import time
+import re
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -33,16 +34,14 @@ def make_wad_client(folder_path):
         logger.error(f"封包wad.client文件失败：{e}")
 
 def modify_py_content(py_content):
-    if "unitHealthBarStyle: u8 = 9" in py_content:
-        # 如果包含 "unitHealthBarStyle: u8 = 9"，则替换为新的内容
-        py_content = py_content.replace(
-            "unitHealthBarStyle: u8 = 9",
-            "unitHealthBarStyle: u8 = 10"
-        )
-    if "unitHealthBarStyle: u8 = 10" in py_content:
+    # 使用正则表达式查找并替换所有形式的 "unitHealthBarStyle: u8 = 任何数字"
+    pattern = r'unitHealthBarStyle: u8 = \d+'
+    if re.search(pattern, py_content):
+        # 如果存在，替换为新值
+        py_content = re.sub(pattern, 'unitHealthBarStyle: u8 = 12', py_content)
         return py_content
-    else:     
-        # 如果不包含 "unitHealthBarStyle: u8 = 9"，则在 "healthBarData" 后面添加新的内容
+    else:
+        # 如果不存在，在 healthBarData 后面添加新的内容
         index = py_content.find("healthBarData")
         if index != -1:
             index = py_content.find("{", index)
@@ -51,7 +50,7 @@ def modify_py_content(py_content):
                 end_index = py_content.find("}", index)
                 if end_index != -1:
                     # 在 '}' 前面插入新的内容
-                    py_content = py_content[:end_index] + "\n    unitHealthBarStyle: u8 = 10" + py_content[end_index:]
+                    py_content = py_content[:end_index] + "\n    unitHealthBarStyle: u8 = 12" + py_content[end_index:]
 
     return py_content
 
@@ -87,7 +86,7 @@ def process_bin_files(folder_path):
                     with open(py_file_path, "r") as file:
                         py_content = file.read()
 
-                    py_content = modify_py_content(py_content)#py_content.replace("unitHealthBarStyle: u8 = 9", "unitHealthBarStyle: u8 = 10")
+                    py_content = modify_py_content(py_content)
 
                     with open(py_file_path, "w") as file:
                         file.write(py_content)
